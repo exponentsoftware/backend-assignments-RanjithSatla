@@ -5,11 +5,13 @@ const app = express();
 
 const db = require("./config/db");
 
+const userRoute = require("./routes/user");
 const todoRoute = require("./routes/todoRoute");
 const filterRoute = require("./routes/filterTodo");
 //middlewares
 app.use(middlewares);
 
+app.use("/", userRoute);
 app.use("/", filterRoute);
 app.use("/", todoRoute);
 
