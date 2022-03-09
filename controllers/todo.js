@@ -56,7 +56,7 @@ module.exports.updateTodo = async (req, res) => {
     .exec()
     .then((result) => {
       res.status(200).json({
-        message: "Updated todo details successfully",
+        message: `Updated todo details successfully `,
         result,
       });
     })
@@ -82,4 +82,31 @@ module.exports.deleteTodo = async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+};
+
+// Update Todo Status
+
+module.exports.changeStatus = async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  await Todo.updateOne(
+    { _id: id },
+    {
+      $set: { "is_complete ": true },
+    }
+  )
+
+    .exec()
+    .then((result) => {
+      res.status(200).json({
+        message: `Updated todo details successfully ${set}`,
+        result,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(500).json({
+        error: err,
+      });
+    });
 };

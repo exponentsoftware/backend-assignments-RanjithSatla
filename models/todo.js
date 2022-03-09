@@ -7,7 +7,7 @@ const TodoSchema = new mongoose.Schema(
     is_Complete: { type: Boolean, required: true, default: false },
     created_at: { type: Date, required: false },
     updated_at: { type: Date, required: false },
-    category: { type: Array },
+    category: { type: String, enum: ["Work", "Hobby", "Task"] },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
