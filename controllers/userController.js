@@ -7,7 +7,6 @@ const createUser = async (req, res, next) => {
     .exec()
     .then((user) => {
       if (user.length >= 1) {
-        console.log(user);
         return res.status(409).json({
           message: "Mail Exists",
         });
@@ -19,6 +18,8 @@ const createUser = async (req, res, next) => {
             });
           } else {
             const user = new User({
+              firstName: req.body.firstName,
+              lastName: req.body.lastName,
               emailId: req.body.emailId,
               password: hash,
               phoneNumber: req.body.phoneNumber,
